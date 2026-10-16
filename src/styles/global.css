@@ -17,6 +17,15 @@ body {
   font-family: var(--font-body);
   font-size: var(--text-base);
   line-height: 1.6;
+  /* Keep the footer at the bottom on short pages */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+  padding-top: var(--space-5);
 }
 
 h1,
@@ -44,6 +53,11 @@ a {
 :focus-visible {
   outline: 3px solid var(--color-focus);
   outline-offset: 2px;
+}
+
+/* <main> takes focus from the skip link; no outline needed on the whole page */
+main:focus {
+  outline: none;
 }
 
 [lang='ar'] {

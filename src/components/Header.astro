@@ -1,0 +1,201 @@
+---
+import { navLinks } from '../data/nav';
+
+const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
+---
+
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="/" aria-label="L&Y Snacks home">
+      <img src="/images/logo.webp" alt="L&Y Snacks" width="177" height="128" />
+    </a>
+
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+      <span class="menu-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Menu</span>
+    </button>
+
+    <nav id="site-nav" class="site-nav" aria-label="Main">
+      <ul>
+        {
+          navLinks.map(({ href, label }) => (
+            <li>
+              <a href={href} aria-current={currentPath === href ? 'page' : undefined}>
+                {label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>('.menu-toggle');
+  const nav = document.getElementById('site-nav');
+
+  function setOpen(open: boolean) {
+    toggle?.setAttribute('aria-expanded', String(open));
+    nav?.classList.toggle('is-open', open);
+  }
+
+  toggle?.addEventListener('click', () => {
+    setOpen(toggle.getAttribute('aria-expanded') !== 'true');
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && nav?.classList.contains('is-open')) {
+      setOpen(false);
+      toggle?.focus();
+    }
+  });
+</script>
+
+<style>
+  .skip-link {
+    position: absolute;
+    left: var(--space-3);
+    top: -100%;
+    z-index: 100;
+    padding: var(--space-2) var(--space-3);
+    background: var(--color-ink);
+    color: var(--color-offwhite);
+    border-radius: var(--radius);
+  }
+
+  .skip-link:focus {
+    top: var(--space-2);
+  }
+
+  .site-header {
+    position: relative;
+    background: var(--color-bg);
+    border-bottom: 1px solid var(--color-sand);
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 4.5rem;
+  }
+
+  .brand img {
+    height: 48px;
+    width: auto;
+  }
+
+  .menu-toggle {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    background: none;
+    border: 0;
+    border-radius: var(--radius);
+    color: var(--color-ink);
+    cursor: pointer;
+  }
+
+  /* Three-line icon that turns into an X when open */
+  .menu-icon,
+  .menu-icon::before,
+  .menu-icon::after {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: currentColor;
+    transition: transform 0.2s ease;
+  }
+
+  .menu-icon {
+    position: relative;
+  }
+
+  .menu-icon::before,
+  .menu-icon::after {
+    content: '';
+    position: absolute;
+    left: 0;
+  }
+
+  .menu-icon::before { top: -7px; }
+  .menu-icon::after { top: 7px; }
+
+  .menu-toggle[aria-expanded='true'] .menu-icon { background: transparent; }
+  .menu-toggle[aria-expanded='true'] .menu-icon::before { transform: translateY(7px) rotate(45deg); }
+  .menu-toggle[aria-expanded='true'] .menu-icon::after { transform: translateY(-7px) rotate(-45deg); }
+
+  .site-nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    background: var(--color-bg);
+    border-bottom: 1px solid var(--color-sand);
+  }
+
+  .site-nav.is-open {
+    display: block;
+  }
+
+  .site-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: var(--space-2) var(--gutter) var(--space-3);
+  }
+
+  .site-nav a {
+    display: block;
+    padding: var(--space-3) 0;
+    color: var(--color-text);
+    font-weight: 500;
+    text-decoration: none;
+  }
+
+  .site-nav a[aria-current='page'] {
+    color: var(--color-accent);
+  }
+
+  @media (min-width: 48rem) {
+    .header-inner {
+      min-height: 5.5rem;
+    }
+
+    .brand img {
+      height: 64px;
+    }
+
+    .menu-toggle {
+      display: none;
+    }
+
+    .site-nav {
+      display: block;
+      position: static;
+      background: none;
+      border: 0;
+    }
+
+    .site-nav ul {
+      display: flex;
+      gap: var(--space-4);
+      padding: 0;
+    }
+
+    .site-nav a {
+      padding: var(--space-2) 0;
+      border-bottom: 2px solid transparent;
+    }
+
+    .site-nav a:hover,
+    .site-nav a[aria-current='page'] {
+      border-bottom-color: currentColor;
+    }
+  }
+</style>
