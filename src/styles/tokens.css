@@ -1,37 +1,47 @@
 /*
  * Design tokens — the single place for colors, type, spacing.
- * TODO: replace provisional hex values with exact colors from the logo/labels.
- * TODO: choose display serif + body sans + Arabic font (see CLAUDE.md).
+ * Colors were sampled from the logo and product labels (Oct 2026).
+ * TODO: confirm against the print/design files if Ahmed has exact values.
+ *
+ * Contrast (WCAG AA needs 4.5:1 for body text):
+ *   ink on cream 15.1 · ink-muted on cream 6.8 · green on cream 10.0 · maroon on cream 10.0
+ *   gold on cream 2.3 (decoration only, never text) · gold-light on green-deep 7.9
  */
 :root {
-  /* Base: warm neutrals (provisional) */
-  --color-sand: #e9dcc4;
-  --color-cream: #f6efe2;
-  --color-offwhite: #fcf9f3;
-  --color-ink: #2a211b;
-  --color-ink-muted: #5c4f45;
+  /* Neutrals */
+  --color-cream: #fbf6ec;
+  --color-sand: #efe4cf;
+  --color-ink: #22201b;
+  --color-ink-muted: #5e5548;
 
-  /* Accents: Ramla product family (provisional) */
-  --color-sadu-red: #9e2a2b;      /* Arabic Coffee */
-  --color-saffron: #e0a526;       /* Karak Chai */
-  --color-espresso: #4a2c1d;      /* Turkish Coffee */
-  --color-deep-green: #1f4d3a;    /* Saudi Coffee */
+  /* L&Y brand (label green + logo gold) */
+  --color-ly-green: #2b4333;
+  --color-ly-green-deep: #1e3326;
+  --color-gold: #d89a1e;
+  --color-gold-light: #f0c030;
+
+  /* Ramla product family */
+  --color-ramla-maroon: #6e2430;  /* Turkish Coffee (from the tin) */
+  --color-ramla-karak: #e0a526;   /* Karak Chai (provisional, no photo yet) */
+  --color-ramla-saudi: #1f4d3a;   /* Saudi Coffee (provisional) */
+  --color-ramla-arabic: #9e2a2b;  /* Arabic Coffee, sadu red (provisional) */
 
   /* Semantic */
-  --color-bg: var(--color-offwhite);
-  --color-surface: var(--color-cream);
+  --color-bg: var(--color-cream);
+  --color-surface: var(--color-sand);
   --color-text: var(--color-ink);
   --color-text-muted: var(--color-ink-muted);
-  --color-accent: var(--color-sadu-red);
-  --color-focus: var(--color-deep-green);
+  --color-accent: var(--color-ly-green);
+  --color-focus: var(--color-ly-green);
+  --color-focus-on-dark: var(--color-gold-light);
 
-  /* Typography (provisional system stacks until fonts are chosen) */
-  --font-display: Georgia, 'Times New Roman', serif;
-  --font-body: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-  --font-arabic: 'Noto Kufi Arabic', 'Segoe UI', Tahoma, sans-serif;
+  /* Typography (self-hosted via @fontsource, imported in BaseLayout) */
+  --font-display: 'Fraunces Variable', Georgia, 'Times New Roman', serif;
+  --font-body: 'Source Sans 3 Variable', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-arabic: 'IBM Plex Sans Arabic', 'Segoe UI', Tahoma, sans-serif;
 
   --text-sm: 0.875rem;
-  --text-base: 1rem;
+  --text-base: 1.0625rem;
   --text-lg: 1.25rem;
   --text-xl: clamp(1.5rem, 1.2rem + 1.5vw, 2rem);
   --text-2xl: clamp(2rem, 1.5rem + 2.5vw, 3rem);

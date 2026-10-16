@@ -35,7 +35,7 @@ Shared header (logo + nav) and footer (nav, Instagram, copyright) on every page.
   - Products: Turkish Coffee, Instant Saudi Coffee, Karak Chai, Arabic Coffee
   - Packed in Amman, Jordan
   - Product color family: Arabic Coffee = sadu red, Karak Chai = yellow,
-    Turkish Coffee = espresso brown, Saudi Coffee = deep green
+    Turkish Coffee = maroon (matches the tin), Saudi Coffee = deep green
   - Signature line: "صباحكم رملة ☕"
 - Instagram: @lny_snacks (https://instagram.com/lny_snacks)
 - Stores carrying the products are in: El Cajon, Temecula, Murrieta, Corona,
@@ -51,12 +51,17 @@ nutrition info, prices, testimonials). Use a clearly marked placeholder instead.
 - Warm, premium, rooted in Middle Eastern heritage — not generic "startup" style.
 - Visual motifs: Islamic geometric / arabesque patterns used subtly (backgrounds,
   dividers), not as clutter.
-- Palette: warm neutrals (sand, cream, off-white) as the base; accent colors drawn
-  from the Ramla family (sadu red, espresso brown, deep green, saffron yellow).
-  TODO: exact hex values from the logo/labels.
-- Typography: a characterful display serif for headings + a clean sans for body.
-  Arabic text must use a proper Arabic font (e.g. Noto Kufi Arabic, Tajawal, or
-  IBM Plex Sans Arabic) and render right-to-left (`dir="rtl"` on Arabic spans).
+- Palette follows the real labels: cream/sand base, **L&Y green `#2B4333`** as the
+  primary brand color, **logo gold `#D89A1E`** for decoration, Ramla maroon `#6E2430`
+  for Ramla/Turkish Coffee. All values live in `src/styles/tokens.css` (sampled from the
+  logo and labels; confirm against print files if available).
+  Gold fails contrast on cream: never use it for text on light backgrounds.
+- Typography: **Fraunces** (headings), **Source Sans 3** (body), **IBM Plex Sans Arabic**
+  (Arabic), self-hosted via `@fontsource`. Arabic text must render right-to-left
+  (`lang="ar" dir="rtl"` on Arabic spans).
+- Product photos are shown as cut-outs (transparent background) on cream/sand.
+  Photos still on a black background are not shown; the card uses the branded
+  placeholder instead.
 - Real product photography is the hero of every page. Until photos exist, use
   neutral placeholders in `public/images/placeholder/` — never stock photos of
   other brands' products.
