@@ -1,0 +1,33 @@
+---
+// Decorative divider: thin gold line with an eight-point star in the middle.
+---
+
+<div class="divider" aria-hidden="true">
+  <svg width="20" height="20" viewBox="0 0 20 20">
+    <g fill="none" stroke="currentColor" stroke-width="1.25">
+      <rect x="4.5" y="4.5" width="11" height="11"></rect>
+      <rect x="4.5" y="4.5" width="11" height="11" transform="rotate(45 10 10)"></rect>
+    </g>
+  </svg>
+</div>
+
+<style>
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    width: 100%;
+    max-width: 20rem;
+    margin: var(--space-6) auto;
+    color: var(--color-gold);
+  }
+
+  .divider::before,
+  .divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: currentColor;
+    opacity: 0.6;
+  }
+</style>

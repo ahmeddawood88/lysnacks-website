@@ -25,7 +25,20 @@ body {
 
 main {
   flex: 1;
-  padding-top: var(--space-5);
+  padding-block: var(--space-5) var(--space-7);
+}
+
+/* A full-width banner at the end of a page sits flush on the footer,
+   even when the page is shorter than the screen */
+main:has(> :last-child.cta) {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 0;
+}
+
+/* Spare height goes above the banner; the banner keeps its own top margin */
+main > :has(+ :last-child.cta) {
+  margin-bottom: auto;
 }
 
 h1,
@@ -63,6 +76,44 @@ main:focus {
 
 [lang='ar'] {
   font-family: var(--font-arabic);
+}
+
+/* Buttons */
+.button {
+  display: inline-block;
+  min-height: 44px;
+  padding: 0.7rem var(--space-4);
+  border: 2px solid transparent;
+  border-radius: var(--radius);
+  background: var(--color-ly-green);
+  color: var(--color-cream);
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.15s ease;
+}
+
+.button:hover {
+  background: var(--color-ly-green-deep);
+}
+
+/* For dark backgrounds: gold button with dark text (7.9:1) */
+.button--gold {
+  background: var(--color-gold-light);
+  color: var(--color-ly-green-deep);
+}
+
+.button--gold:hover {
+  background: var(--color-cream);
+}
+
+.button--outline {
+  background: transparent;
+  border-color: currentColor;
+  color: inherit;
+}
+
+.button--outline:hover {
+  background: rgb(255 255 255 / 0.1);
 }
 
 .container {

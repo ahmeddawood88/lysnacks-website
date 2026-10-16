@@ -92,8 +92,11 @@ nutrition info, prices, testimonials). Use a clearly marked placeholder instead.
 - Load them with `import.meta.glob('/src/assets/products/*.{jpg,jpeg,png,webp}')` and
   match by slug, so dropping a correctly named file in the folder is all it takes.
 - If a product has no photo yet, show a branded placeholder (never a broken image).
-- Alt text format: "<Brand> <Product name>, <size> package", e.g.
-  "Ramla Arabic Coffee, 200g package".
+- Alt text format: "<Brand> <Product name> package", e.g.
+  "Ramla Arabic Coffee package".
+- **Product sizes are not shown anywhere on the site** (Ahmed's decision, Oct 2026).
+- Soft/Fine and Coarse Yellow Burgul share one bag photo (`image` field in products.json).
+- Not on the site: Olive Oil and Rio House Salep.
 - Originals may be large phone photos; Astro resizes them at build time. Do not
   commit files over ~5 MB — resize first if needed.
 - Logo, favicon, and Open Graph image stay in `public/images/`.

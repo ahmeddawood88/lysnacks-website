@@ -1,13 +1,29 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import ArabicText from '../components/ArabicText.astro';
+import PatternDivider from '../components/PatternDivider.astro';
+import CallToAction from '../components/CallToAction.astro';
 ---
 
 <BaseLayout
   title="L&Y Snacks"
   description="L&Y Snacks brings Middle Eastern pantry staples and Ramla coffee to grocery stores across California."
 >
+  <!-- Placeholder homepage until the real one is built (plan step 4) -->
   <section class="container">
     <h1>L&amp;Y Snacks</h1>
     <p>Site under construction.</p>
+    <p class="signature"><ArabicText>صباحكم رملة ☕</ArabicText></p>
   </section>
+
+  <PatternDivider />
+
+  <CallToAction />
 </BaseLayout>
+
+<style>
+  .signature {
+    font-size: var(--text-lg);
+    color: var(--color-ramla-maroon);
+  }
+</style>

@@ -1,0 +1,10 @@
+---
+// Wraps Arabic text so it always gets the Arabic font and right-to-left direction.
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<span lang="ar" dir="rtl" class={className}><slot /></span>

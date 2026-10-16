@@ -1,0 +1,52 @@
+---
+// Wholesale banner shown near the bottom of most pages.
+interface Props {
+  title?: string;
+  text?: string;
+  href?: string;
+  label?: string;
+}
+
+const {
+  title = 'Carry L&Y in your store',
+  text = 'We supply Middle Eastern, Arab, and halal grocery stores across California. Tell us about your store and we’ll be in touch.',
+  href = '/contact?type=wholesale',
+  label = 'Wholesale inquiry',
+} = Astro.props;
+---
+
+<section class="cta">
+  <div class="container cta-inner">
+    <h2>{title}</h2>
+    <p>{text}</p>
+    <a class="button button--gold" href={href}>{label}</a>
+  </div>
+</section>
+
+<style>
+  .cta {
+    margin-top: var(--space-7);
+    padding-block: var(--space-7);
+    background-color: var(--color-ly-green);
+    background-image: url('../assets/patterns/star-tile.svg');
+    color: var(--color-cream);
+    text-align: center;
+  }
+
+  .cta-inner {
+    max-width: 40rem;
+  }
+
+  .cta h2 {
+    color: var(--color-cream);
+  }
+
+  .cta p {
+    margin: 0 0 var(--space-5);
+    color: var(--color-sand);
+  }
+
+  .cta :focus-visible {
+    outline-color: var(--color-focus-on-dark);
+  }
+</style>

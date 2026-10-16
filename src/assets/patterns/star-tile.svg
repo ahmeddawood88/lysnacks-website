@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+  <!-- Eight-point star (khatam): two overlapping squares, with small diamonds at the tile corners -->
+  <g fill="none" stroke="#d89a1e" stroke-width="1" stroke-opacity="0.18">
+    <rect x="14" y="14" width="20" height="20"/>
+    <rect x="14" y="14" width="20" height="20" transform="rotate(45 24 24)"/>
+    <path d="M0 4 4 0M44 0l4 4M48 44l-4 4M4 48 0 44"/>
+  </g>
+</svg>
