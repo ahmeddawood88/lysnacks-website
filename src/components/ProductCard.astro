@@ -1,0 +1,143 @@
+---
+import { Image } from 'astro:assets';
+import ArabicText from './ArabicText.astro';
+import { getProductImage, isTodo, type Product } from '../lib/products';
+
+interface Props {
+  product: Product;
+}
+
+const { product } = Astro.props;
+const image = getProductImage(product);
+const alt = `${product.brand} ${product.name} package`;
+
+// Ramla products carry their own color; L&Y products use the brand green.
+const accent = product.color ? `var(--color-${product.color})` : 'var(--color-ly-green)';
+// Karak yellow is a light background, so its placeholder text is dark (contrast).
+const lightAccent = product.color === 'ramla-karak';
+---
+
+<article
+  class:list={['card', { 'card--ramla': product.brand === 'Ramla' }]}
+  style={`--accent: ${accent}`}
+>
+  <div class="media">
+    {
+      image ? (
+        <Image
+          src={image}
+          alt={alt}
+          widths={[240, 360, 480]}
+          sizes="(min-width: 64rem) 240px, (min-width: 48rem) 33vw, 50vw"
+        />
+      ) : (
+        <div class:list={['placeholder', { 'placeholder--light': lightAccent }]} aria-hidden="true">
+          <ArabicText class="placeholder-ar">{product.nameAr}</ArabicText>
+          <span class="placeholder-brand">{product.brand}</span>
+        </div>
+      )
+    }
+  </div>
+
+  <div class="body">
+    <h3 class="name">{product.name}</h3>
+    <p class="name-ar"><ArabicText>{product.nameAr}</ArabicText></p>
+    <p class:list={['description', { 'description--todo': isTodo(product.description) }]}>
+      {product.description}
+    </p>
+  </div>
+</article>
+
+<style>
+  .card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: var(--color-bg);
+    border: 1px solid var(--color-sand);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+
+  .card--ramla {
+    border-top: 4px solid var(--accent);
+  }
+
+  .media {
+    aspect-ratio: 4 / 5;
+    background: var(--color-sand);
+  }
+
+  .media img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: var(--space-3);
+  }
+
+  .placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    height: 100%;
+    padding: var(--space-3);
+    background-color: var(--color-sand);
+    background-image: url('../assets/patterns/star-tile.svg');
+    color: var(--color-ly-green);
+    text-align: center;
+  }
+
+  .card--ramla .placeholder {
+    background-color: var(--accent);
+    color: var(--color-cream);
+  }
+
+  .card--ramla .placeholder--light {
+    color: var(--color-ink);
+  }
+
+  .placeholder-ar {
+    font-size: clamp(1.25rem, 1rem + 1.5vw, 1.75rem);
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  .placeholder-brand {
+    font-family: var(--font-display);
+    font-size: var(--text-sm);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    opacity: 0.85;
+  }
+
+  .body {
+    padding: var(--space-3);
+  }
+
+  .name {
+    margin: 0;
+    font-size: var(--text-base);
+    line-height: 1.3;
+  }
+
+  .name-ar {
+    margin: var(--space-1) 0 var(--space-2);
+    color: var(--color-text-muted);
+  }
+
+  .description {
+    margin: 0;
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+  }
+
+  /* Placeholder copy is meant to be noticed and replaced */
+  .description--todo {
+    padding: var(--space-1) var(--space-2);
+    border: 1px dashed var(--color-ink-muted);
+    border-radius: 4px;
+    font-style: italic;
+  }
+</style>

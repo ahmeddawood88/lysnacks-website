@@ -1,0 +1,144 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProductCard from '../components/ProductCard.astro';
+import ArabicText from '../components/ArabicText.astro';
+import PatternDivider from '../components/PatternDivider.astro';
+import CallToAction from '../components/CallToAction.astro';
+import { groupByCategory, productsByBrand } from '../lib/products';
+
+const lyGroups = groupByCategory(productsByBrand('L&Y'));
+const ramla = productsByBrand('Ramla');
+---
+
+<BaseLayout
+  title="Our Products"
+  description="L&Y Middle Eastern pantry staples (tahini, za'atar, pomegranate molasses, pickles, legumes) and Ramla coffee, packed in Amman, Jordan."
+>
+  <header class="container page-intro">
+    <h1>Our Products</h1>
+    <p>Middle Eastern pantry staples from L&amp;Y, and Ramla coffee packed in Amman, Jordan.</p>
+    <nav class="jump" aria-label="Product lines">
+      <a href="#ly-pantry">L&amp;Y Pantry</a>
+      <a href="#ramla-coffee">Ramla Coffee</a>
+    </nav>
+  </header>
+
+  <section id="ly-pantry" class="container line" aria-labelledby="ly-pantry-title">
+    <h2 id="ly-pantry-title">L&amp;Y Pantry</h2>
+    {
+      lyGroups.map(([category, items]) => (
+        <div class="category">
+          <h3 class="category-title">{category}</h3>
+          <ul class="grid">
+            {items.map((product) => (
+              <li>
+                <ProductCard product={product} />
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))
+    }
+  </section>
+
+  <PatternDivider />
+
+  <section id="ramla-coffee" class="container line" aria-labelledby="ramla-coffee-title">
+    <h2 id="ramla-coffee-title" class="ramla-title">Ramla Coffee</h2>
+    <p class="ramla-note">
+      Packed in Amman, Jordan. <ArabicText class="signature">صباحكم رملة ☕</ArabicText>
+    </p>
+    <ul class="grid">
+      {
+        ramla.map((product) => (
+          <li>
+            <ProductCard product={product} />
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <CallToAction />
+</BaseLayout>
+
+<style>
+  .page-intro p {
+    max-width: 38rem;
+    color: var(--color-text-muted);
+  }
+
+  .jump {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-top: var(--space-4);
+  }
+
+  .jump a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0 var(--space-3);
+    border: 1px solid var(--color-ly-green);
+    border-radius: 999px;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .jump a:hover {
+    background: var(--color-ly-green);
+    color: var(--color-cream);
+  }
+
+  .line {
+    margin-top: var(--space-6);
+    scroll-margin-top: var(--space-4);
+  }
+
+  .category + .category {
+    margin-top: var(--space-5);
+  }
+
+  .category-title {
+    padding-bottom: var(--space-2);
+    border-bottom: 1px solid var(--color-sand);
+    color: var(--color-ly-green);
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-3);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .ramla-title {
+    color: var(--color-ramla-maroon);
+  }
+
+  .ramla-note {
+    margin: 0 0 var(--space-4);
+    color: var(--color-text-muted);
+  }
+
+  .signature {
+    margin-inline-start: var(--space-2);
+    color: var(--color-ramla-maroon);
+  }
+
+  @media (min-width: 48rem) {
+    .grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--space-4);
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+</style>

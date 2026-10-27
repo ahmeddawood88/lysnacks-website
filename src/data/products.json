@@ -1,1 +1,170 @@
-[]
+[
+  {
+    "slug": "tahini",
+    "brand": "L&Y",
+    "name": "Tahini",
+    "nameAr": "طحينة",
+    "category": "Spreads & Spices",
+    "description": "TODO: short description from Ahmed",
+    "featured": true
+  },
+  {
+    "slug": "moloki-zaatar",
+    "brand": "L&Y",
+    "name": "Moloki Zaatar",
+    "nameAr": "زعتر ملوكي",
+    "category": "Spreads & Spices",
+    "description": "TODO: short description from Ahmed",
+    "featured": true
+  },
+  {
+    "slug": "pomegranate-molasses",
+    "brand": "L&Y",
+    "name": "Pomegranate Molasses",
+    "nameAr": "دبس الرمان",
+    "category": "Molasses & Flower Waters",
+    "description": "TODO: short description from Ahmed",
+    "featured": true
+  },
+  {
+    "slug": "rose-water",
+    "brand": "L&Y",
+    "name": "Rose Water",
+    "nameAr": "ماء الورد",
+    "category": "Molasses & Flower Waters",
+    "description": "TODO: short description from Ahmed",
+    "featured": false
+  },
+  {
+    "slug": "blossom-water",
+    "brand": "L&Y",
+    "name": "Blossom Water",
+    "nameAr": "ماء الزهر",
+    "category": "Molasses & Flower Waters",
+    "description": "TODO: short description from Ahmed",
+    "featured": false
+  },
+  {
+    "slug": "pickled-cucumber",
+    "brand": "L&Y",
+    "name": "Pickled Cucumber",
+    "nameAr": "مخلل خيار",
+    "category": "Pickles",
+    "description": "TODO: short description from Ahmed",
+    "featured": true
+  },
+  {
+    "slug": "pickled-turnip-strips",
+    "brand": "L&Y",
+    "name": "Pickled Turnip Strips",
+    "nameAr": "مخلل لفت",
+    "category": "Pickles",
+    "description": "TODO: short description from Ahmed",
+    "featured": false
+  },
+  {
+    "slug": "jumbo-chickpeas",
+    "brand": "L&Y",
+    "name": "Jumbo Chickpeas",
+    "nameAr": "حمص",
+    "category": "Grains & Legumes",
+    "description": "TODO: short description from Ahmed",
+    "featured": false
+  },
+  {
+    "slug": "broad-faba-beans",
+    "brand": "L&Y",
+    "name": "Broad Faba Beans",
+    "nameAr": "فول",
+    "category": "Grains & Legumes",
+    "description": "TODO: short description from Ahmed",
+    "featured": false
+  },
+  {
+    "slug": "red-lentils",
+    "brand": "L&Y",
+    "name": "Red Lentils",
+    "nameAr": "عدس أحمر",
+    "category": "Grains & Legumes",
+    "description": "TODO: short description from Ahmed",
+    "featured": false
+  },
+  {
+    "slug": "white-beans",
+    "brand": "L&Y",
+    "name": "White Beans",
+    "nameAr": "فاصوليا بيضاء",
+    "category": "Grains & Legumes",
+    "description": "TODO: short description from Ahmed",
+    "featured": false
+  },
+  {
+    "slug": "fine-yellow-burgul",
+    "brand": "L&Y",
+    "name": "Fine Yellow Burgul",
+    "nameAr": "برغل ناعم أصفر",
+    "category": "Grains & Legumes",
+    "description": "TODO: short description from Ahmed",
+    "image": "yellow-burgul",
+    "featured": false
+  },
+  {
+    "slug": "coarse-yellow-burgul",
+    "brand": "L&Y",
+    "name": "Coarse Yellow Burgul",
+    "nameAr": "برغل خشن أصفر",
+    "category": "Grains & Legumes",
+    "description": "TODO: short description from Ahmed",
+    "image": "yellow-burgul",
+    "featured": false
+  },
+  {
+    "slug": "waferz-hazelnut-chocolate-wafers",
+    "brand": "L&Y",
+    "name": "Waferz Hazelnut Chocolate Wafers",
+    "nameAr": "ويفرز",
+    "category": "Sweets",
+    "description": "TODO: short description from Ahmed",
+    "featured": false
+  },
+  {
+    "slug": "ramla-turkish-coffee",
+    "brand": "Ramla",
+    "name": "Turkish Coffee",
+    "nameAr": "قهوة تركية",
+    "category": "Coffee & Tea",
+    "description": "TODO: short description from Ahmed",
+    "color": "ramla-maroon",
+    "featured": true
+  },
+  {
+    "slug": "ramla-instant-saudi-coffee",
+    "brand": "Ramla",
+    "name": "Instant Saudi Coffee",
+    "nameAr": "قهوة سعودية سريعة التحضير",
+    "category": "Coffee & Tea",
+    "description": "TODO: short description from Ahmed",
+    "color": "ramla-saudi",
+    "featured": false
+  },
+  {
+    "slug": "ramla-karak-chai",
+    "brand": "Ramla",
+    "name": "Karak Chai",
+    "nameAr": "شاي كرك",
+    "category": "Coffee & Tea",
+    "description": "TODO: short description from Ahmed",
+    "color": "ramla-karak",
+    "featured": false
+  },
+  {
+    "slug": "ramla-arabic-coffee",
+    "brand": "Ramla",
+    "name": "Arabic Coffee",
+    "nameAr": "قهوة عربية",
+    "category": "Coffee & Tea",
+    "description": "TODO: short description from Ahmed",
+    "color": "ramla-arabic",
+    "featured": false
+  }
+]
