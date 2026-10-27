@@ -1,29 +1,235 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ArabicText from '../components/ArabicText.astro';
-import PatternDivider from '../components/PatternDivider.astro';
+import ProductGrid from '../components/ProductGrid.astro';
 import CallToAction from '../components/CallToAction.astro';
+import { featuredProducts } from '../lib/products';
+import { cities, citySlug } from '../data/cities';
+
+const featured = featuredProducts(4);
 ---
 
 <BaseLayout
   title="L&Y Snacks"
-  description="L&Y Snacks brings Middle Eastern pantry staples and Ramla coffee to grocery stores across California."
+  description="L&Y Snacks of Sacramento brings Middle Eastern pantry staples and Ramla coffee to grocery stores across California."
 >
-  <!-- Placeholder homepage until the real one is built (plan step 4) -->
-  <section class="container">
-    <h1>L&amp;Y Snacks</h1>
-    <p>Site under construction.</p>
-    <p class="signature"><ArabicText>صباحكم رملة ☕</ArabicText></p>
+  <!-- TODO: hero headline and subtext are provisional; replace with Ahmed's copy -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <div class="hero-text">
+        <h1>Middle Eastern pantry staples, on California shelves</h1>
+        <p class="hero-sub">
+          Tahini, za’atar, pickles, legumes, and Ramla coffee from L&amp;Y Snacks of Sacramento.
+        </p>
+        <div class="hero-actions">
+          <a class="button button--gold" href="/products">See our products</a>
+          <a class="button button--outline" href="#where-to-buy">Where to buy</a>
+        </div>
+      </div>
+      <img
+        class="hero-logo"
+        src="/images/logo-280.webp"
+        srcset="/images/logo-280.webp 388w, /images/logo-420.webp 581w, /images/logo-560.webp 775w"
+        sizes="(min-width: 48rem) 360px, 240px"
+        width="388"
+        height="280"
+        alt=""
+        fetchpriority="high"
+      />
+    </div>
   </section>
 
-  <PatternDivider />
+  <!-- TODO: brand intro is written from CLAUDE.md facts; replace with Ahmed's copy -->
+  <section class="container intro" aria-labelledby="intro-title">
+    <h2 id="intro-title">From Sacramento to stores across California</h2>
+    <p>
+      L&amp;Y Snacks brings the Middle Eastern pantry staples our customers cook with every day to
+      the Middle Eastern, Arab, and halal grocery stores where they shop. The L&amp;Y line covers
+      tahini, za’atar, pomegranate molasses, flower waters, pickles, and legumes. Ramla, our coffee
+      line, is packed in Amman, Jordan.
+    </p>
+    <p class="signature"><ArabicText>صباحكم رملة ☕</ArabicText></p>
+    <a class="more" href="/about">Read our story <span aria-hidden="true">→</span></a>
+  </section>
 
-  <CallToAction />
+  <section class="container featured" aria-labelledby="featured-title">
+    <div class="section-head">
+      <h2 id="featured-title">Featured products</h2>
+      <a class="more" href="/products">See all products <span aria-hidden="true">→</span></a>
+    </div>
+    <ProductGrid products={featured} layout="row" />
+  </section>
+
+  <section id="where-to-buy" class="stores" aria-labelledby="stores-title">
+    <div class="container">
+      <h2 id="stores-title">Find us in stores</h2>
+      <p>L&amp;Y and Ramla are on the shelves of grocery stores in these California cities.</p>
+      <ul class="cities">
+        {
+          cities.map((city) => (
+            <li>
+              <a href={`/customers#${citySlug(city)}`}>
+                <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21Z"></path>
+                  <circle cx="12" cy="9.5" r="2.5"></circle>
+                </svg>
+                {city}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <a class="more" href="/customers">See all stores <span aria-hidden="true">→</span></a>
+    </div>
+  </section>
+
+  <CallToAction href="/contact?type=wholesale" />
 </BaseLayout>
 
 <style>
+  /* Hero ----------------------------------------------------------- */
+  .hero {
+    padding-block: var(--space-6);
+    background-color: var(--color-ly-green);
+    background-image: url('../assets/patterns/star-tile.svg');
+    color: var(--color-cream);
+  }
+
+  .hero-inner {
+    display: grid;
+    gap: var(--space-5);
+    align-items: center;
+  }
+
+  .hero h1 {
+    max-width: 16ch;
+    color: var(--color-cream);
+  }
+
+  .hero-sub {
+    max-width: 34rem;
+    margin: 0 0 var(--space-5);
+    font-size: var(--text-lg);
+    color: var(--color-sand);
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+  }
+
+  .hero :focus-visible {
+    outline-color: var(--color-focus-on-dark);
+  }
+
+  .hero-logo {
+    width: 240px;
+    height: auto;
+    justify-self: center;
+    filter: drop-shadow(0 8px 24px rgb(0 0 0 / 0.35));
+  }
+
+  /* Intro ---------------------------------------------------------- */
+  .intro {
+    max-width: 44rem;
+    margin-top: var(--space-7);
+    text-align: center;
+  }
+
+  .intro p {
+    margin: 0 0 var(--space-3);
+  }
+
   .signature {
     font-size: var(--text-lg);
     color: var(--color-ramla-maroon);
+  }
+
+  .more {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    min-height: 44px;
+    font-weight: 600;
+  }
+
+  /* Featured ------------------------------------------------------- */
+  .featured {
+    margin-top: var(--space-7);
+  }
+
+  .section-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0 var(--space-4);
+    margin-bottom: var(--space-3);
+  }
+
+  .section-head h2 {
+    margin: 0;
+  }
+
+  /* Stores strip --------------------------------------------------- */
+  .stores {
+    margin-top: var(--space-7);
+    padding-block: var(--space-6);
+    background: var(--color-sand);
+    text-align: center;
+    scroll-margin-top: var(--space-4);
+  }
+
+  .stores p {
+    margin: 0 0 var(--space-4);
+    color: var(--color-text-muted);
+  }
+
+  .cities {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-2);
+    margin: 0 0 var(--space-3);
+    padding: 0;
+    list-style: none;
+  }
+
+  .cities a {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    min-height: 44px;
+    padding: 0 var(--space-3);
+    border: 1px solid var(--color-ly-green);
+    border-radius: 999px;
+    background: var(--color-cream);
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .cities a:hover {
+    background: var(--color-ly-green);
+    color: var(--color-cream);
+  }
+
+  /* The wholesale banner follows the sand strip directly */
+  .stores + :global(.cta) {
+    margin-top: 0;
+  }
+
+  @media (min-width: 48rem) {
+    .hero {
+      padding-block: var(--space-7);
+    }
+
+    .hero-inner {
+      grid-template-columns: 1fr auto;
+    }
+
+    .hero-logo {
+      width: 360px;
+    }
   }
 </style>

@@ -1,0 +1,52 @@
+---
+import ProductCard from './ProductCard.astro';
+import type { Product } from '../lib/products';
+
+interface Props {
+  products: Product[];
+  /** "row" keeps up to 4 items on one line from tablet width (e.g. homepage featured). */
+  layout?: 'default' | 'row';
+}
+
+const { products, layout = 'default' } = Astro.props;
+---
+
+<ul class:list={['grid', { 'grid--row': layout === 'row' }]}>
+  {
+    products.map((product) => (
+      <li>
+        <ProductCard product={product} />
+      </li>
+    ))
+  }
+</ul>
+
+<style>
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-3);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  @media (min-width: 48rem) {
+    .grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--space-4);
+    }
+  }
+
+  @media (min-width: 48rem) {
+    .grid--row {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+</style>

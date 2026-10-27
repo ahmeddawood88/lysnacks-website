@@ -28,6 +28,11 @@ main {
   padding-block: var(--space-5) var(--space-7);
 }
 
+/* A full-width hero at the top of a page sits flush under the header */
+main:has(> :first-child.hero) {
+  padding-top: 0;
+}
+
 /* A full-width banner at the end of a page sits flush on the footer,
    even when the page is shorter than the screen */
 main:has(> :last-child.cta) {

@@ -23,6 +23,11 @@ export function productsByBrand(brand: Brand): Product[] {
   return allProducts.filter((product) => product.brand === brand);
 }
 
+/** Products marked `"featured": true` in products.json, in file order. */
+export function featuredProducts(limit = 4): Product[] {
+  return allProducts.filter((product) => product.featured).slice(0, limit);
+}
+
 /** Groups products by category, keeping the order categories first appear in products.json. */
 export function groupByCategory(list: Product[]): [string, Product[]][] {
   const groups = new Map<string, Product[]>();

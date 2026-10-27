@@ -51,7 +51,7 @@
     "nameAr": "مخلل خيار",
     "category": "Pickles",
     "description": "TODO: short description from Ahmed",
-    "featured": true
+    "featured": false
   },
   {
     "slug": "pickled-turnip-strips",

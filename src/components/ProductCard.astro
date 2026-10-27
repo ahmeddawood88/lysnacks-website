@@ -59,8 +59,18 @@ const lightAccent = product.color === 'ramla-karak';
     overflow: hidden;
   }
 
+  /* Color stripe drawn over the top edge so Ramla cards stay the same height as L&Y cards */
   .card--ramla {
-    border-top: 4px solid var(--accent);
+    position: relative;
+  }
+
+  .card--ramla::before {
+    content: '';
+    position: absolute;
+    inset: 0 0 auto;
+    z-index: 1;
+    height: 4px;
+    background: var(--accent);
   }
 
   .media {

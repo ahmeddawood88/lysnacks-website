@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import ProductCard from '../components/ProductCard.astro';
+import ProductGrid from '../components/ProductGrid.astro';
 import ArabicText from '../components/ArabicText.astro';
 import PatternDivider from '../components/PatternDivider.astro';
 import CallToAction from '../components/CallToAction.astro';
@@ -29,13 +29,7 @@ const ramla = productsByBrand('Ramla');
       lyGroups.map(([category, items]) => (
         <div class="category">
           <h3 class="category-title">{category}</h3>
-          <ul class="grid">
-            {items.map((product) => (
-              <li>
-                <ProductCard product={product} />
-              </li>
-            ))}
-          </ul>
+          <ProductGrid products={items} />
         </div>
       ))
     }
@@ -48,15 +42,7 @@ const ramla = productsByBrand('Ramla');
     <p class="ramla-note">
       Packed in Amman, Jordan. <ArabicText class="signature">صباحكم رملة ☕</ArabicText>
     </p>
-    <ul class="grid">
-      {
-        ramla.map((product) => (
-          <li>
-            <ProductCard product={product} />
-          </li>
-        ))
-      }
-    </ul>
+    <ProductGrid products={ramla} />
   </section>
 
   <CallToAction />
@@ -106,15 +92,6 @@ const ramla = productsByBrand('Ramla');
     color: var(--color-ly-green);
   }
 
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: var(--space-3);
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-
   .ramla-title {
     color: var(--color-ramla-maroon);
   }
@@ -127,18 +104,5 @@ const ramla = productsByBrand('Ramla');
   .signature {
     margin-inline-start: var(--space-2);
     color: var(--color-ramla-maroon);
-  }
-
-  @media (min-width: 48rem) {
-    .grid {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: var(--space-4);
-    }
-  }
-
-  @media (min-width: 64rem) {
-    .grid {
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-    }
   }
 </style>
