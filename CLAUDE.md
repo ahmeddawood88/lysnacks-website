@@ -91,7 +91,12 @@ nutrition info, prices, testimonials). Use a clearly marked placeholder instead.
   deployed. `node scripts/cutout-products.mjs` removes the black background and writes
   transparent WebPs into `src/assets/products/` (add `<dir> --preview` to review first).
   Photos on a white/grey background can't be cut automatically (white lids match the
-  background): cut them by hand (e.g. remove.bg) and save as `src/assets/products/<slug>.webp`.
+  background): cut them by hand (e.g. remove.bg), save the transparent PNG as
+  `photos/cutouts/<slug>.png` and rerun the script.
+- **All product images are the same size**: the script places every product on an
+  identical 800×1000 transparent canvas (the card's 4:5 frame), scaled with equal
+  margins and bottom-aligned. Always add product images through the script, never by
+  copying files straight into `src/assets/products/`.
   Still needed: manual cut-outs of Karak Chai and Instant Saudi Coffee; a photo of Arabic Coffee.
 - File name = the product's `slug` in products.json, e.g. `ramla-arabic-coffee.jpg`.
   Extra angles use a suffix: `ramla-arabic-coffee-2.jpg`.
