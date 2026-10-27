@@ -87,6 +87,12 @@ nutrition info, prices, testimonials). Use a clearly marked placeholder instead.
 ## Product images
 
 - Product photos go in `src/assets/products/` (not `public/`) so Astro can optimize them.
+- Original photos (black background) live in `photos/originals/<slug>.jpg` and are never
+  deployed. `node scripts/cutout-products.mjs` removes the black background and writes
+  transparent WebPs into `src/assets/products/` (add `<dir> --preview` to review first).
+  Photos on a white/grey background can't be cut automatically (white lids match the
+  background): cut them by hand (e.g. remove.bg) and save as `src/assets/products/<slug>.webp`.
+  Still needed: manual cut-outs of Karak Chai and Instant Saudi Coffee; a photo of Arabic Coffee.
 - File name = the product's `slug` in products.json, e.g. `ramla-arabic-coffee.jpg`.
   Extra angles use a suffix: `ramla-arabic-coffee-2.jpg`.
 - Load them with `import.meta.glob('/src/assets/products/*.{jpg,jpeg,png,webp}')` and
